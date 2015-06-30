@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var hr = document.location.href;
+		hr = hr.replace('index.html', '');
+		if( hr[hr.length - 1] != '/' ) hr += '/';
+		// document.location.href = hr + 'web/';
+	</script>
+</head>
+<body>
+	<h1 style="text-align: center; margin-top: 50px;"><a href="./web/">Перейти на сайт</a></h1>
+</body>
+</html>

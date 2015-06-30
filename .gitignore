@@ -1,5 +1,11 @@
+##projects dev
+___gulp/node_modules/
+*.idea
+web/
+.gitignore
 
 
+##WebStrorm
 ## Directory-based project format:
 .idea/
 # if you remove the above rule, at least ignore the following:

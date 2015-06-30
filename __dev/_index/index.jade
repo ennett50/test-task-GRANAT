@@ -1,0 +1,22 @@
+doctype
+html
+	head
+		title Тестовое задание
+		meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+
+		link(rel="stylesheet", type="text/css", href="_index/style.css")
+
+
+	body
+
+		section
+			.block-text
+				table
+					tr
+						th(width="30%") Ссылка
+						th Название страницы
+					each page in locals.pages
+						tr
+							td
+								a(href="#{page.file}.html", target="_blank") #{page.file}.html
+							td #{page.name}
