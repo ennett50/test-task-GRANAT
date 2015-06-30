@@ -1,9 +1,35 @@
 extends layouts/_default
 block vars
-    -var currentPageTitle = "������� ����� �� JavaScript"
+    -var currentPageTitle = "Решение задач по JavaScript"
 
 block title
     title=currentPageTitle
 
 block block-content
-   p Hello
+    ol
+        li
+            p Напишите функцию разбора query-строки в набор параметров.
+            p
+                strong Решение:
+
+            div.row
+                div.col-md-6
+                   p query-строка:
+                   pre.js-query-string http://example.ru/?id=784&type=string&variable=param#test&this=all
+
+
+                div.col-md-6
+                    p Резульатат:
+                    pre.js-query-result
+
+        li
+            p Допустим, параметры http-запроса хранятся как свойства объекта. Напишите функцию сериализации параметров в query-строку с добавлением к произвольному url.
+            p
+                strong Решение:
+
+            div.row
+                div.col-md-6
+                    p Объект http-запроса:
+                    pre {"id":"784","type":"string","variable":"param#test","this":"all"}
+                div.col-md-6
+                    p В query-строку:
