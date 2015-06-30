@@ -4,11 +4,12 @@ html(lang="ru").no-js
     include includes/head.jade
 
     body
-
         include includes/header.jade
         section
-            div.wrapper-content
-                block block-content
+            div.container
+                div.starter-template
+                    h1.text-center #{currentPageTitle && currentPageTitle.length > 0 ? currentPageTitle : 'Название страницы'}
+                    block block-content
 
 
 
