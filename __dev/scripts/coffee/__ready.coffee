@@ -91,27 +91,31 @@ compareForms =
 
 
     i = 0
-    try
-      while i < form1.length
-        item_form_1 = form1[i]
 
+    while i < form1.length
+      item_form_1 = form1[i]
+      try
         j = 0
         while j < form2.length
           item_form_2 = form2[j]
 
-
           form1_element = if item_form_1 != null then item_form_1.name else undefined
           form2_element = if item_form_2 != null then item_form_2.name else undefined
+
+
           if form1_element == form2_element
             if item_form_1.value != item_form_2.value
               compareForms.__showResult item_form_2.name, item_form_2.value, differences, 'update'
             delete form1[i]
             delete form2[j]
-
           ++j
-        ++i
-    catch
-      differences = []
+      catch
+        delete form1[i]
+        delete form2[j]
+        delete form2[j+1]
+      ++i
+
+
 
     compareForms.__paramsUpdate(differences, form1, form2)
     return differences
