@@ -1,94 +1,27 @@
 $(document).ready ->
 
-
+  ###
+  # @description - Задание 1
+  ###
   queryToString('.js-query-string', '.js-query-result')
+
+
+  ###
+  # @description - Задание 2
+  ###
   queryToUrl('.js-object-jquery', '.js-object-result')
 
+  ###
+  # @description - Задание 3
+  ###
 
-
-  ##################
-
-
-
-  #######################################################
-
-  form1 = $('#form1')
-  form2 = $('#form2')
-  result = $('#task2-result-compareForms')
-
-  run = ->
-    res = [].concat(compareForms(form1, form2))
-    result.empty()
-    $.each res, (i, item) ->
-      $('<li>').html(item).appendTo result
-      return
+  result = $('#js-compareForms-result')
+  differences = compareForms.init($('#form1'), $('#form2'))
+  result.empty()
+  $.each differences, (i, item) ->
+    $('<li>').html(item).appendTo result
     return
 
-
-  run()
-
-
-#########################################################################################
-
-
-
-window.compareForms = (form1, form2) ->
-  differences = undefined
-
-
-  form1 = $(form1).serializeArray()
-  form2 = $(form2).serializeArray()
-#  [1, 2, 3].forEach(param) ->
-#    console.log(param)
-  differences = []
-  _i = 0
-
-  while _i < form1.length
-    item_in_1 = form1[_i]
-    _j = 0
-
-    while _j < form2.length
-      item_in_2 = form2[_j]
-      if (if item_in_1 != null then item_in_1.name else undefined) == (if item_in_2 != null then item_in_2.name else undefined)
-        if item_in_1.value != item_in_2.value
-          addToDifferences item_in_2.name, item_in_1.value, item_in_2.value, differences, 'update'
-          
-        delete form1[_i]
-        delete form2[_j]
-      ++_j
-    ++_i
-
-
-
-  form1 = cleanFromEmptiness(form1)
-  form2 = cleanFromEmptiness(form2)
-
-
-
-  if (form1 != null)
-    form1.forEach (param) ->
-      addToDifferences(param.name, null, null, differences, 'delete');
-#
-  if (form2 != null)
-    form2.forEach (param) ->
-      addToDifferences(param.name, null, null, differences, 'insert');
-
-  if (differences.length == 0)
-    return 'Формы идентичны'
-
-
-  return differences
-
-
-
-addToDifferences = (paramName, oldValue, newValue, differences, type) ->
-  if type == null
-    type = 'update'
-  differences.push if type == 'update' then 'Обновился парамметр \'' + paramName + '\': был \'' + oldValue + '\', а стал \'' + newValue + '\'' else if type == 'delete' then 'Удалён парамметр \'' + paramName + '\'' else if type == 'insert' then 'Добавлен новый парамметр: \'' + paramName + '\'' else undefined
-
-cleanFromEmptiness = (array) ->
-  array.filter (item) ->
-    item
 
 
 
@@ -105,11 +38,11 @@ queryToString = (js_query_string, js_query_result) ->
   array_params = current_params.split('&')
   i = 0
   while i < array_params.length
-    array_item = array_params[i].split('=')
-    if typeof query_results[array_item[0]] == 'undefined'
-      query_results[array_item[0]] = array_item[1]
+    arrayitem = array_params[i].split('=')
+    if typeof query_results[arrayitem[0]] == 'undefined'
+      query_results[arrayitem[0]] = arrayitem[1]
     else
-      query_results[array_item[0]].push array_item[1]
+      query_results[arrayitem[0]].push arrayitem[1]
     i++
   $(js_query_result).text(JSON.stringify(query_results))
 
@@ -118,11 +51,11 @@ queryToString = (js_query_string, js_query_result) ->
 
 ###
 # @description - функция сериализации параметров в query-строку с добавлением к произвольному url.
-# @param string js_object_jquery - переменная изменяемого объекта
+# @param string js_objectjquery - переменная изменяемого объекта
 # @param string js_object_result - переменная вывода результата
 ###
-queryToUrl = (js_object_jquery, js_object_result) ->
-  query_object = $(js_object_jquery).text()
+queryToUrl = (js_objectjquery, js_object_result) ->
+  query_object = $(js_objectjquery).text()
   parse_object = JSON.parse(query_object)
   test_location = 'http://example.ru/'
   result = test_location + '?'
@@ -131,3 +64,82 @@ queryToUrl = (js_object_jquery, js_object_result) ->
     result += item + '=' + parse_object[item] + '&'
 
   $(js_object_result).text(result.substr(0, result.length - 1))
+
+
+
+###
+# @description - функция сравнения двух наборов параметров форм
+# @param form1 - первая форма для сравнения
+# @param form2 - вторая форма для сравнения
+###
+
+compareForms =
+  ###
+  # иницилизация модуля сравнения
+  ###
+  init : (form1, form2)->
+
+    this.__compare(form1, form2)
+
+  ###
+  # модуль сравнения 2х форм
+  ###
+  __compare : (form1, form2) ->
+    differences = []
+    form1 = $(form1).serializeArray()
+    form2 = $(form2).serializeArray()
+
+
+    i = 0
+
+    while i < form1.length
+      item_form_1 = form1[i]
+      j = 0
+      while j < form2.length
+        item_form_2 = form2[j]
+        form1_element = if item_form_1 != null then item_form_1.name else undefined
+        form2_element = if item_form_2 != null then item_form_2.name else undefined
+        if form1_element == form2_element
+          if item_form_1.value != item_form_2.value
+            compareForms.__showResult item_form_2.name, item_form_2.value, differences, 'update'
+          delete form1[i]
+          delete form2[j]
+        ++j
+      ++i
+
+
+    compareForms.__paramsUpdate(differences, form1, form2)
+    return differences
+
+  ###
+  # Вывод результата сравнения
+  ###
+  __paramsUpdate: (differences, form1, form2) ->
+    if (form1 != null)
+      form1.forEach (item) ->
+        compareForms.__showResult(item.name, null, differences, 'delete');
+
+    if (form2 != null)
+      form2.forEach (item) ->
+        compareForms.__showResult(item.name, null, differences, 'insert');
+
+    if (differences.length == 0)
+      return 'Формы одинаковы'
+
+  ###
+  # показ сообщения результата сравнения
+  ###
+  __showResult: (nameValue, newValue, differences, type) ->
+    textUpdate = 'Обновилось значение - <b>'+ nameValue + '</b> стал <i>' + newValue + '</i>'
+    textRemove = 'Удалёно значение  - <b>' + nameValue + '</b>'
+    textInsert =  'Добавлено новое значение -  <b>' + nameValue + '</b>'
+
+    if type == null
+      type = 'update'
+    differences.push if type == 'update' then textUpdate else if type == 'delete' then textRemove else if type == 'insert' then textInsert else undefined
+
+
+
+
+
+
