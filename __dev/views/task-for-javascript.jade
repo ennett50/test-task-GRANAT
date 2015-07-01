@@ -56,12 +56,12 @@ block block-content
                         div.panel-body
                             form.form-horizontal#form2
                                 div.form-group
+                                    label(for="inputEmail" class="col-sm-2 control-label") Email
+                                    div.col-sm-10
+                                        input(type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email" value="test@test.ru")
+                                div.form-group
                                     label(for="inputName" class="col-sm-2 control-label") Name
                                     div.col-sm-10
-                                        input(type="text" class="form-control" name="inputName" id="inputName" placeholder="Name" value="Winston")
-                                div.form-group
-                                    label(for="inputAddress" class="col-sm-2 control-label") Address
-                                    div.col-sm-10
-                                        input(type="text" class="form-control" name="inputAddress" id="inputAddress" placeholder="Address" value="St. Petersburg, Nevsky Prospect, 74")
+                                        input(type="text" class="form-control" name="inputName" id="inputName" placeholder="Name" value='Maxim')
             div.row
-                ul#js-compareForms-result
+                ul#js-result-compareForms
