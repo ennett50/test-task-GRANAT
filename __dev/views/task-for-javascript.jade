@@ -5,6 +5,7 @@ block vars
 block title
     title=currentPageTitle
 
+
 block block-content
     ol
         li
@@ -16,20 +17,51 @@ block block-content
                 div.col-md-6
                    p query-строка:
                    pre.js-query-string http://example.ru/?id=784&type=string&variable=param#test&this=all
-
-
                 div.col-md-6
-                    p Резульатат:
+                    p Результат:
                     pre.js-query-result
-
         li
             p Допустим, параметры http-запроса хранятся как свойства объекта. Напишите функцию сериализации параметров в query-строку с добавлением к произвольному url.
             p
                 strong Решение:
-
             div.row
                 div.col-md-6
                     p Объект http-запроса:
-                    pre {"id":"784","type":"string","variable":"param#test","this":"all"}
+                    pre.js-object-jquery {"id":"784","type":"string","variable":"param#test","this":"all"}
                 div.col-md-6
                     p В query-строку:
+                    pre.js-object-result
+        li
+            p Напишите систему сравнения двух наборов параметров форм. Имена параметров могут повторяться. Система должна отвечать на вопрос: «Что изменилось в параметрах?». Сделайте для этой системы html-интерфейс.
+            p
+                strong Решение:
+            div.row
+                div.col-md-6
+                    div.panel.panel-default
+                        div.panel-heading Form 1
+                        div.panel-body
+                            form.form-horizontal#form1
+                                div.form-group
+                                    label(for="inputEmail" class="col-sm-2 control-label") Email
+                                    div.col-sm-10
+                                        input(type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email" value="test@test.ru")
+                                div.form-group
+                                    label(for="inputName" class="col-sm-2 control-label") Name
+                                    div.col-sm-10
+                                        input(type="text" class="form-control" name="inputName" id="inputName" placeholder="Name" value='Maxim')
+
+                div.col-md-6
+                    div.panel.panel-default
+                        div.panel-heading Form 2
+                        div.panel-body
+                            form.form-horizontal#form2
+                                div.form-group
+                                    label(for="inputName" class="col-sm-2 control-label") Name
+                                    div.col-sm-10
+                                        input(type="text" class="form-control" name="inputName" id="inputName" placeholder="Name" value="Winston")
+                                div.form-group
+                                    label(for="inputAddress" class="col-sm-2 control-label") Address
+                                    div.col-sm-10
+                                        input(type="text" class="form-control" name="inputAddress" id="inputAddress" placeholder="Address" value="St. Petersburg, Nevsky Prospect, 74")
+            div.row
+                ul#task2-result-compareForms
