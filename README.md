@@ -3,6 +3,7 @@
 Для работы выполнить:
 ```bash
 npm install -g gulp
+cd ___gulp
 npm install
 gulp
 ```
