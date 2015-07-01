@@ -132,3 +132,87 @@ _text-overflow(width_value = 'none')
 	overflow hidden
 	if width_value != 'none'
 		width width_value
+.info-block
+	position relative
+	margin-bottom 40px
+	text-align center
+	&-img
+		max-width 100%
+	&-desc
+		font-size 12px
+		padding 15px
+		background #fff
+		overflow hidden
+		background rgba(255, 255, 255, 0.9)
+		border 15px solid rga(121, 155, 188)
+		border 15px solid rgba(121, 155, 188, 0.5)
+		position absolute
+		z-index 1;
+		border-box()
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		max-width: 80%;
+		max-height: 40%;
+		text-align left
+		margin: auto;
+.list-info
+	position relative
+	margin-bottom 40px
+	&-ctn
+		font-size 0
+		line-height 0
+		margin 0 -2%
+	&-item
+		display inline-block
+		vertical-align top
+		width 21%
+		font-size 12px
+		line-height normal
+		border 10px solid #336699
+		border-box()
+		padding 10px
+		background #ffffff
+		margin 0 2% 25px
+.list-news
+	position relative
+	margin-bottom 40px
+	&-ctn
+		display table
+		margin-bottom 50px
+	&-item
+		display table-cell
+		vertical-align top
+		padding 0 0 0 80px
+		&:first-child
+			padding 0
+	&-desc
+		border: 10px solid #369;
+		padding 15px 20px
+		border-box()
+		position relative
+		&:before
+			content ''
+			display block
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 40px 40px 40px 0;
+			border-color: transparent #336699 transparent transparent;
+			position: absolute;
+			top 15px
+			left -50px
+		&:after
+			content ''
+			display block
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 40px 40px 40px 0;
+			border-color: transparent #fff transparent transparent;
+			position absolute
+			top 15px
+			left -35px
+
+

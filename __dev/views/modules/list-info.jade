@@ -1,0 +1,12 @@
+-var list_info = []
+-list_info[0] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+-list_info[1] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+-list_info[2] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. '
+-list_info[3] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud'
+-list_info[4] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut'
+
+div.list-info
+    ul.list-info-ctn.list-unstyled
+        -for (i=0;i<2;i++)
+            each item in list_info
+                li.list-info-item=item

@@ -1,0 +1,41 @@
+.list-news
+	position relative
+	margin-bottom 40px
+	&-ctn
+		display table
+		margin-bottom 50px
+	&-item
+		display table-cell
+		vertical-align top
+		padding 0 0 0 80px
+		&:first-child
+			padding 0
+	&-desc
+		border: 10px solid #369;
+		padding 15px 20px
+		border-box()
+		position relative
+		&:before
+			content ''
+			display block
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 40px 40px 40px 0;
+			border-color: transparent #336699 transparent transparent;
+			position: absolute;
+			top 15px
+			left -50px
+		&:after
+			content ''
+			display block
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 40px 40px 40px 0;
+			border-color: transparent #fff transparent transparent;
+			position absolute
+			top 15px
+			left -35px
+
+
