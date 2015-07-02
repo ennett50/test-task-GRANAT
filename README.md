@@ -11,6 +11,6 @@ gulp
 Также используются livereload, autoprefixer, uglify и другое.
 
 Автоматизация:
-1. Для шаблонов - jade
-2. Для стилей - препроцессров stylus
-3. Для js - coffeescript
+* Для шаблонов - jade
+* Для стилей - препроцессров stylus
+* Для js - coffeescript
